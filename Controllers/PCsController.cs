@@ -74,5 +74,26 @@ namespace WebLesson1.Controllers
 
             return CreatedAtAction(nameof(GetPC), new {id = newPc.Id}, newPc);
         }
+        [HttpPut]
+        public async Task<IActionResult> UpdatePC(int id, PCUpdateDTO newPc)
+        {
+            var pc = await _context.PCs.FindAsync(id);
+            if (pc == null) return NotFound("No such pc");
+            pc.Name = newPc.Name;
+            pc.Weight = newPc.Weight;
+            pc.Warranty = newPc.Warranty;
+            pc.Stock = newPc.Stock;
+            await _context.SaveChangesAsync();
+            return Ok(pc);
+        }
+        [HttpDelete("{int:id}")]
+        public async Task<IActionResult> DeletePC(int id)
+        {
+            var pc = await _context.PCs.FindAsync(id);
+            if (pc == null) return NotFound("No such pc");
+            _context.PCs.Remove(pc);
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }
