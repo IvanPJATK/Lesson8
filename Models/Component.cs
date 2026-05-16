@@ -6,7 +6,8 @@ namespace WebLesson1.Models
     public class Component
     {
         [Key]
-        string Code { get; set; } = null!;
+        [Column(TypeName = "char(10)")]
+        public string Code { get; set; } = null!;
         [Required]
         [MaxLength(300)]
         public string Name { get; set; } = null!;

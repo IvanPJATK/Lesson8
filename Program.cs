@@ -1,5 +1,5 @@
+using WebApplication1.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using WebLesson1.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
